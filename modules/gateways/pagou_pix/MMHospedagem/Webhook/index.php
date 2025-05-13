@@ -2,6 +2,8 @@
 
 require_once(dirname(__FILE__,3) . "/vendor/autoload.php");
 require_once(dirname(__FILE__,6) . "/init.php");
+require_once(dirname(__FILE__,6) . "/includes/gatewayfunctions.php");
+require_once(dirname(__FILE__,6) . "/includes/invoicefunctions.php");
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -136,6 +138,39 @@ if ($ipValido) {
             }
 
         }
+
+    }
+
+    if(($webhook_recebido["name"] == "qrcode.refunded")) {
+
+        $txid = $webhook_recebido["data"]["id"];
+
+        $dateTime = new DateTime('now', new DateTimeZone('America/Sao_Paulo'));
+        $dataAtual = $dateTime->format('Y-m-d H:i:s');
+
+        $new_txid = $this->get_transation_id($invoice,"REEMBOLSADO");
+
+        foreach (Capsule::table("pagou_pix_cobrancas")->where(["txid" => $txid, "status" => "PAGO"])->get() as $key => $cobranca) {
+            
+            http_response_code(200);
+    
+            $fatura = localAPI("GetInvoice", [
+                "invoiceid" => $cobranca->invoice
+            ]);
+    
+            if(($fatura["status"] == "Paid")) {
+
+                paymentReversed($new_txid, $cobranca->end_txid, 0, 'pagou_pix');
+
+                Capsule::table("pagou_pix_cobrancas")->where(["txid" => $txid, "status" => "PAGO"])->update([
+                    "json_confirmacao" => json_encode($webhook_recebido),
+                    "status" => "REEMBOLSADO",
+                    "update_up" => $dataAtual
+                ]);
+
+            }
+
+        }        
 
     }
 
