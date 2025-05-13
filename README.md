@@ -1,4 +1,4 @@
-<img src="https://github.com/mmhospedagem/pagou_pix/blob/main/modules/gateways/pagou_pix/templates/admin/imagens/logo.png" width="100">
+<img src="https://pagou.com.br/img/logo.svg" width="100">
 
 ## Gateway Pagou - Pix
 
