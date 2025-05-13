@@ -150,7 +150,8 @@ function pagou_pix_refund($params) {
 
     if(!empty($send["error"])) {
         return [
-            'status' => 'error'
+            'status' => 'error',
+            'rawdata' => $send["error"]
         ];
     }
 
