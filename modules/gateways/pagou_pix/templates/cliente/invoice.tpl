@@ -60,4 +60,14 @@
             </div>
         </div>
     </div>
+{else}
+    <div class="container-fluid invoice-container">
+        <div class="row invoice-header">
+            <div class="d-flex col-12 justify-content-sm-between text-center text-sm-left invoice-col">
+                <div class="alert alert-danger" role="alert" style="width: 100%; margin-bottom: 0;">
+                    Nenhuma cobrança via PIX está disponível para esta fatura no momento.
+                </div>
+            </div>
+        </div>
+    </div>
 {/if}
