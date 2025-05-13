@@ -2,38 +2,22 @@
 
 # Gateway Pagou - Pix
 
-O módulo PIX permite o recebimento de pagamentos via QrCode, Chave PIX ou Código PIX no WHMCS, seu cliente poderá efetuar o pagamento em segundos de forma prática e rápida e o melhor com retorno automático.
+O Gateway Pagou - PIX é um módulo desenvolvido para integrar o sistema de pagamentos via PIX diretamente ao WHMCS, oferecendo agilidade, praticidade e segurança no recebimento de faturas.
 
-# Adicionar QRCode no PDF
+Com ele, seus clientes poderão efetuar pagamentos utilizando QRCode, chave PIX ou código de cópia e cola, com confirmação automática dentro do WHMCS.
 
-- Para adicionar o QRCode no invoicepdf.tpl adicione o codigo abaixo onde voce deseja exibir o QRCode
+# ⚙️ Funcionalidades
 
-- Na linha 2 do arquivo invoicepdf.tpl adicione
+- Emissão automática de cobrança PIX ao gerar a fatura
+- Pagamento via:
+    - QR Code (imagem)
+    - Código de cópia e cola
+    - Retorno automático (pagamento confirmado no WHMCS)
+    - Compatível com exibição de QRCode no PDF da fatura
+    - Compatível com exibição de QRCode, copiar e colar nos envios dos emails
 
-```
-use Carbon\Carbon;
-use WHMCS\Database\Capsule;
-use WHMCS\Config\Setting;
-```
+# 🧩 Requisitos
 
-- No final do arquivo invoicepdf.tpl adicione
-
-```
-$ExistePix = Capsule::table('pagou_pix_cobrancas')->where(['invoice' => $invoicenum])->orderBy("id", "desc")->limit(1)->first();
-
-if(($ExistePix->location != "") && ($ExistePix->location != null)) {
-
-    if ( ($status == 'Unpaid') ) {
-
-        $pdf->Ln(10);
-        
-        $tblpix = '<div style="padding: 10px; background-color: #FFF; color: #333; font-size: 12px; text-align: left; text-align: center;">
-            <img style="width: 130px; padding: 0; margin: 0;" src="' . Setting::getValue('SystemURL') . "/pagou_pix.php?metodo=pix&id=" . $invoicenum . '">
-        </div>';
-
-        $pdf->writeHTML($tblpix, true, false, false, false, '');
-
-    }
-
-}
-```
+- WHMCS 8.0 ou superior
+- Extensões PHP: cURL, mbstring, json
+- Conta no Pagou
