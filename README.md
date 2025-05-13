@@ -16,7 +16,7 @@ use WHMCS\Database\Capsule;
 use WHMCS\Config\Setting;
 ```
 
-- No final do arquivo invoicepdf.tp adicione
+- No final do arquivo invoicepdf.tpl adicione
 
 ```
 $ExistePix = Capsule::table('pagou_pix_cobrancas')->where(['invoice' => $invoicenum])->orderBy("id", "desc")->limit(1)->first();
