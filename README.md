@@ -4,7 +4,7 @@
 
 O módulo PIX permite o recebimento de pagamentos via QrCode, Chave PIX ou Código PIX no WHMCS, seu cliente poderá efetuar o pagamento em segundos de forma prática e rápida e o melhor com retorno automático.
 
-# Adicionar QRCode na Fatura
+# Adicionar QRCode no PDF
 
 - Para adicionar o QRCode no invoicepdf.tpl adicione o codigo abaixo onde voce deseja exibir o QRCode
 
