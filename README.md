@@ -1,3 +1,5 @@
+<img src="https://github.com/mmhospedagem/pagou_pix/blob/main/modules/gateways/pagou_pix/templates/admin/imagens/logo.png" width="100">
+
 # Gateway Pagou - Pix
 
 O módulo PIX permite o recebimento de pagamentos via QrCode, Chave PIX ou Código PIX no WHMCS, seu cliente poderá efetuar o pagamento em segundos de forma prática e rápida e o melhor com retorno automático.
