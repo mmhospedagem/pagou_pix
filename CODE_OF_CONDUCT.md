@@ -20,7 +20,3 @@ Comportamentos inapropriados podem ser reportados para:
 **suporte@pagou.com.br**
 
 Todas as denúncias serão tratadas com confidencialidade.
-
----
-
-Este Código de Conduta é baseado no [Contributor Covenant](https://www.contributor-covenant.org/)
