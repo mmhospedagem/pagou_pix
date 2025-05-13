@@ -13,6 +13,7 @@ Com ele, seus clientes poderão efetuar pagamentos utilizando QRCode, chave PIX 
     - QR Code (imagem)
     - Código de cópia e cola
 - Retorno automático (pagamento confirmado no WHMCS)
+- Estorno / Reverter pagamento
 - Compatível com exibição de QRCode no PDF da fatura
 - Compatível com exibição de QRCode, copiar e colar nos envios dos emails
 
