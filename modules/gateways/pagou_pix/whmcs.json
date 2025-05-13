@@ -1,0 +1,32 @@
+{
+    "schema": "1.0",
+    "type": "whmcs-gateways",
+    "name": "pagou_pix",
+    "license": "MIT",
+    "category": "payments",
+    "description": {
+        "name": "Pagou - PIX",
+        "tagline": "Integração com PIX via PAGOU.COM.BR",
+        "long": "O módulo PIX permite o recebimento de pagamentos via QrCode, Chave PIX ou Código PIX no WHMCS, seu cliente poderá efetuar o pagamento em segundos de forma prática e rápida.",
+        "features": [
+            "Possível emitir cobranças (Pix) no Pagou.",
+            "Possível cancelar (reembolsar) um (Pix) recebido.",
+            "Retorno automático usando Webhook."
+        ]
+    },
+    "logo": {
+        "filename": "templates/admin/imagens/logo.png"
+    },
+    "support": {
+        "homepage": "https://www.pagou.com.br",
+        "email": "suporte@pagou.com.br",
+        "learn_more": "https://www.pagou.com.br/desenvolvedores#modules",
+        "support_url": "https://www.pagou.com.br/atendimento"
+    },
+    "authors": [
+        {
+            "name": "MMHospedagem",
+            "homepage": "https://www.mmhospedagem.com.br"
+        }
+    ]
+}
