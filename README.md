@@ -21,3 +21,10 @@ Com ele, seus clientes poderão efetuar pagamentos utilizando QRCode, chave PIX 
 - WHMCS 8.0 ou superior
 - Extensões PHP: cURL, mbstring, json
 - Conta no Pagou
+
+## 📄 Licença
+
+Este módulo é gratuito e não pode ser vendido ou redistribuído com fins comerciais.  
+Ao utilizá-lo, você concorda com os termos da [licença de uso](LICENSE).  
+
+© 2025 Pagou.com.br / MMHospedagem – Todos os direitos reservados.
