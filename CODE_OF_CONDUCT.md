@@ -16,7 +16,7 @@ Este projeto segue um Código de Conduta com o objetivo de proporcionar um ambie
 
 ## 📣 Denúncias
 
-Comportamentos inapropriados podem ser reportados para: **suporte@pagou.com.br**
+Comportamentos inapropriados podem ser reportados para: **suporte@pagou.com.br**<br>
 Com copia para: **contato@mmhospedagem.com.br**
 
 Todas as denúncias serão tratadas com confidencialidade.
