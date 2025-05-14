@@ -6,11 +6,8 @@ Se você encontrar uma vulnerabilidade de segurança, **NÃO abra uma issue púb
 
 ## 📫 Como reportar
 
-Envie um e-mail diretamente para:  
-**suporte@pagou.com.br**
-
-Com copia para:
-**contato@mmhospedagem.com.br**
+Envie um e-mail diretamente para: **suporte@pagou.com.br**<br>
+Com copia para: **contato@mmhospedagem.com.br**
 
 Inclua:
 
