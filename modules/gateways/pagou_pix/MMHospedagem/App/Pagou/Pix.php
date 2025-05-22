@@ -452,8 +452,17 @@ class Pix {
             $send = $this->send("POST","/v1/pix/due",$request);
 
             if(!empty($send["error"])) {
+                
                 $this->Logs("[Fatura: {$invoice}] {$send["error"]}");
+
+                if((!empty($send["errors"]))) {
+                    foreach ($send["errors"] as $erro) {
+                        $this->Logs("[Fatura: {$invoice}] {$erro}");
+                    }
+                }
+
                 return '';
+
             }
 
             $dateTime = new DateTime('now', new DateTimeZone('America/Sao_Paulo'));
