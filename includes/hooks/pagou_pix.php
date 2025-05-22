@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__,3) . "/modules/gateways/pagou_pix/vendor/autoload.php");
+require_once(dirname(__FILE__,4) . "/modules/gateways/pagou_pix/vendor/autoload.php");
 
 date_default_timezone_set('America/Sao_Paulo');
 
