@@ -19,7 +19,8 @@ Com ele, seus clientes poderão efetuar pagamentos utilizando QRCode, chave PIX 
 
 ## 🧩 Requisitos
 
-- WHMCS 8.0 ou superior
+- WHMCS 8.12 ou superior
+- PHP 8.2 ou superior
 - Extensões PHP: cURL, mbstring, json
 - Conta no Pagou
 
