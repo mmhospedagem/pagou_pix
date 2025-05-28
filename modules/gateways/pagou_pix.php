@@ -132,7 +132,6 @@ function pagou_pix_link($params) {
 function pagou_pix_refund($params) {
 
     $pagou = (new Pix());
-    $smarty = (new Smarty());
 
     $invoice = $params['invoiceid'];
     $description = $params["description"];

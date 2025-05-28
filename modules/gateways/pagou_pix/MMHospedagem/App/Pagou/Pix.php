@@ -306,6 +306,7 @@ class Pix {
 
         	case "POST":
         	case "PUT":
+            case "DELETE":
 
         		curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($request));
         		break;
@@ -536,7 +537,7 @@ class Pix {
 
     public function reembolsar_cobranca($txid,$valor) {
 
-        $cobranca = Capsule::table('pagou_pix_cobrancas')->where(["end_txid" => $invoice, "status" => "PAGO"])->orderBy("id", "desc")->limit(1)->first();
+        $cobranca = Capsule::table('pagou_pix_cobrancas')->where(["end_txid" => $txid, "status" => "PAGO"])->orderBy("id", "desc")->limit(1)->first();
 
         if((!empty($cobranca->location))) {
 
@@ -557,7 +558,7 @@ class Pix {
                 "reason" => (int)3
             ];
 
-            $send = $this->send("DELETE","/v1/pix/$txid}/refund",$request);
+            $send = $this->send("DELETE","/v1/pix/{$cobranca->txid}/refund",$request);
 
             Capsule::table('pagou_pix_cobrancas')->where(["invoice" => $invoice, "status" => "PAGO"])->orderBy("id", "desc")->update([
                 "status" => "REEMBOLSADO",

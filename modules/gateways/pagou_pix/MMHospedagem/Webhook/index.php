@@ -120,6 +120,7 @@ if ($ipValido) {
 
                     Capsule::table("pagou_pix_cobrancas")->where(["txid" => $txid, "status" => "ABERTO"])->update([
                         "json_confirmacao" => json_encode($webhook_recebido),
+                        "end_txid" => $webhook_recebido["data"]["e2e_id"],
                         "status" => "PAGO",
                         "update_up" => $dataAtual
                     ]);
