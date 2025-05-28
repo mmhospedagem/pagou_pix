@@ -58,7 +58,7 @@ if ($ipValido) {
     if(($webhook_recebido["name"] == "qrcode.completed")) {
 
         $txid = $webhook_recebido["data"]["id"];
-
+        
         $dateTime = new DateTime('now', new DateTimeZone('America/Sao_Paulo'));
         $dataAtual = $dateTime->format('Y-m-d H:i:s');
         
@@ -85,7 +85,7 @@ if ($ipValido) {
                     if(($valorPago_Cliente > $valorFatura_WHMCS) && ($valorFatura_WHMCS != "0.00")) {
     
                         $dataAtual = (new DateTime())->format('Y-m-d');
-    
+                        
                         if(($dataAtual > $fatura["duedate"])) {
 
                             if(($pagou->multa == "on") || ($pagou->juros == "on")) {
@@ -103,35 +103,35 @@ if ($ipValido) {
     
                         }
 
-                        if(($pagou->desconto == "on")) {
-
-                            $valorDesconto = number_format(($valorPago_Cliente - $valorFatura_WHMCS), 2, '.', '');
-    
-                            localAPI("UpdateInvoice",[
-                                "invoiceid" => $cobranca->invoice,
-                                "newitemdescription" => [0 => "Desconto pagamento ate a data de vencimento"],
-                                "newitemamount" => [0 => "-{$valorDesconto}"],
-                                "newitemtaxed" => [0 => false]
-                            ]);
-
-                        }
-
-                        Capsule::table("pagou_pix_cobrancas")->where(["txid" => $txid, "status" => "ABERTO"])->update([
-                            "json_confirmacao" => json_encode($webhook_recebido),
-                            "status" => "PAGO",
-                            "update_up" => $dataAtual
-                        ]);
-    
-                        localAPI("AddInvoicePayment", [
-                            'invoiceid' => $cobranca->invoice,
-                            'transid' => $webhook_recebido["data"]["e2e_id"],
-                            'amount' => number_format($consultar_qrcode["amount"], 2, '.', ''),
-                            'fees' => number_format($consultar_qrcode["fee"], 2, '.', ''),
-                            'gateway' => 'pagou_pix',
-                            'date' => date('Y-m-d H:i:s')
-                        ]);
-    
                     }
+
+                    if(($pagou->desconto == "on")) {
+
+                        $valorDesconto = number_format(($valorPago_Cliente - $valorFatura_WHMCS), 2, '.', '');
+
+                        localAPI("UpdateInvoice",[
+                            "invoiceid" => $cobranca->invoice,
+                            "newitemdescription" => [0 => "Desconto pagamento até a data de vencimento"],
+                            "newitemamount" => [0 => "-{$valorDesconto}"],
+                            "newitemtaxed" => [0 => false]
+                        ]);
+
+                    }
+
+                    Capsule::table("pagou_pix_cobrancas")->where(["txid" => $txid, "status" => "ABERTO"])->update([
+                        "json_confirmacao" => json_encode($webhook_recebido),
+                        "status" => "PAGO",
+                        "update_up" => $dataAtual
+                    ]);
+
+                    localAPI("AddInvoicePayment", [
+                        'invoiceid' => $cobranca->invoice,
+                        'transid' => $webhook_recebido["data"]["e2e_id"],
+                        'amount' => number_format($consultar_qrcode["amount"], 2, '.', ''),
+                        'fees' => number_format($consultar_qrcode["fee"], 2, '.', ''),
+                        'gateway' => 'pagou_pix',
+                        'date' => date('Y-m-d H:i:s')
+                    ]);
         
                 }
 
