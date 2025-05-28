@@ -1,6 +1,10 @@
 <?php
 
-require_once(dirname(__FILE__,4) . "/modules/gateways/pagou_pix/vendor/autoload.php");
+if (!defined('ROOTDIR')) {
+    define('ROOTDIR', dirname(__FILE__, 4)); // ou ajuste para 3 se necessário
+}
+
+require_once(ROOTDIR . "/modules/gateways/pagou_pix/vendor/autoload.php");
 
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -130,19 +134,17 @@ add_hook('AdminInvoicesControlsOutput', 1, function($vars) {
 
         $ExistePix = Capsule::table('pagou_pix_cobrancas')->where(["invoice" => $invoice, "status" => "PAGO"])->orderBy("id", "desc")->limit(1)->first();
 
+
         if((!empty($ExistePix->location))) {
 
-            $json = base64_decode($ExistePix->json_confirmacao);
-            $json = json_decode($json, true);
+            $json = $ExistePix->json_confirmacao;
+            $json = json_decode($json, True);
 
             foreach (Capsule::table('tblcustomfieldsvalues')->where(['fieldid' => $pagou->origem_cpfcnpj, 'relid' => $idcliente])->get() as $dados) {
                 $cpfcnpj = preg_replace('/\D/', '', $dados->value);
             }
-
+        
             if(($cpfcnpj != preg_replace('/\D/', '',$json["data"]["payer"]["bank"]["document"]))) {
-
-                $response = file_get_contents("https://brasilapi.com.br/api/banks/v1/" . $json["data"]["payer"]["bank"]["code"]);
-                $banco = json_decode($response, true);
 
                 return '<div class="alert alert-warning" role="alert" style="text-align: left;">
                     <strong>Atenção:</strong> o pagamento desta fatura foi realizado por um titular diferente do CPF ou CNPJ cadastrado na conta.<br>
@@ -157,10 +159,6 @@ add_hook('AdminInvoicesControlsOutput', 1, function($vars) {
                             <tr>
                                 <td>Documento (CPF/CNPJ)</td>
                                 <td>' . $json["data"]["payer"]["bank"]["document"] . '</td>
-                            </tr>
-                            <tr>
-                                <td>Banco</td>
-                                <td>' . ($banco["name"] != "" ? $banco["name"] : "-") . '</td>
                             </tr>
                             <tr>
                                 <td>Agência</td>
